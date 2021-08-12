@@ -1,9 +1,9 @@
 var quizQuestions = [
-{question:"What is the capital of Texas?", a:"Dallas", b:"Houston", c:"Austin", d:"San Antonio"},
-{question:"What is the capital of New York?", a:"New York City", b:"Albany", c:"Buffalo", d:"Syracuse"},
-{question:"What is the capital of California?", a:"Sacramento", b:"Los Angeles", c:"San Diego", d:"San Francisco"},
-{question:"What is the capital of Florida?", a:"Tallahassee", b:"Miami", c:"Orlando", d:"Jacksonville"},
-{question:"What is the capital of Hawaii?", a:"O'ahu", b:"Maui", c:"Pearl City", d:"Honolulu"}
+{question:"What is the capital of Texas?", a:"Dallas", b:"Houston", c:"Austin", d:"San Antonio", answer:"Austin"},
+{question:"What is the capital of New York?", a:"New York City", b:"Albany", c:"Buffalo", d:"Syracuse", answer:"Albany"},
+{question:"What is the capital of California?", a:"Sacramento", b:"Los Angeles", c:"San Diego", d:"San Francisco", answer:"Sacramento"},
+{question:"What is the capital of Florida?", a:"Tallahassee", b:"Miami", c:"Orlando", d:"Jacksonville", answer:"Tallahassee"},
+{question:"What is the capital of Hawaii?", a:"O'ahu", b:"Maui", c:"Pearl City", d:"Honolulu", answer:"Honolulu"}
 ];
 
 var question = document.querySelector('#question');
@@ -12,15 +12,25 @@ var answer2 = document.querySelector('#answer2');
 var answer3 = document.querySelector('#answer3');
 var answer4 = document.querySelector('#answer4');
 var nextBtn = document.querySelector('.submit-answer')
+var startBtn = document.querySelector('#start-btn')
+var quizContainer = document.querySelector('.quiz-container')
+var instuctionContainer = document.querySelector('.instruction-container')
 var questionCounter = 0;
+var countDown = 100;
+
+startBtn.onclick = function() {
+    instuctionContainer.style.opacity = 0
+    quizContainer.style.opacity = 1
+    quizContainer.style.zIndex = 2
+    timer();
+}
 
 //Timer on the page 
 function timer(){
-    var sec = 5;
     var timer = setInterval(function(){
-        document.querySelector('.timer').innerHTML= sec;
-        sec--;
-        if(sec < 0){
+        document.querySelector('.timer').innerHTML= countDown;
+        countDown--;
+        if(countDown < 0){
             clearInterval(timer);
         }
     }, 1000);
@@ -34,8 +44,11 @@ answer2.innerHTML = quizQuestions[questionCounter].b
 answer3.innerHTML = quizQuestions[questionCounter].c
 answer4.innerHTML = quizQuestions[questionCounter].d
 
-//WHen you click the submit button, calls changeQuestion function 
+//WHen you click the submit button, checks answer, calls changeQuestion function
 nextBtn.onclick = function(){
+
+    checkAnswer();
+
 questionCounter++
 if(questionCounter < quizQuestions.length){
     changeQuestion()
@@ -45,6 +58,30 @@ if(questionCounter < quizQuestions.length){
 }
 };
 
+//Function that checks answer
+var checkAnswer = function(){
+    //Grabs Users Answer
+    if(document.querySelector('#input1').checked) {
+        var UserAnswer = answer1.innerHTML
+    } else if (document.querySelector('#input2').checked) {
+        var UserAnswer = answer2.innerHTML
+    } else if (document.querySelector('#input3').checked) {
+        var UserAnswer = answer3.innerHTML
+    } else if (document.querySelector('#input4').checked) {
+        var UserAnswer = answer4.innerHTML
+    } else {
+        var UserAnswer = ""
+    }
+
+    //Checks for Right Answer
+    if(UserAnswer == quizQuestions[questionCounter].answer){
+        console.log("CORRECT ANSWER")
+    } else {
+        console.log("WRONG ANSWER")
+        countDown = countDown - 10;
+    }
+    
+}
 
 //Function that loads info into quiz form. 
 var changeQuestion = function(){
@@ -55,5 +92,4 @@ answer3.innerHTML = quizQuestions[questionCounter].c
 answer4.innerHTML = quizQuestions[questionCounter].d
 };
 
-//on page load, run timer 
-question.addEventListener("load", timer());
+

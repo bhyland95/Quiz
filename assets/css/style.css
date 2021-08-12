@@ -4,12 +4,31 @@
     box-sizing: border-box;
 }
 
+.instruction-container {
+    margin:auto;
+    width: 400px;
+    position: absolute;
+    border: 3px solid black;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    opacity: 1;
+}
+
 .quiz-container {
     margin:auto;
     width: 400px;
-    position: relative;
+    position: absolute;
     border: 3px solid black;
+    display:hidden;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
 }
+
+
 
 .quiz-header{
     display: flex;
