@@ -10,25 +10,29 @@
 <body>
     <div class="quiz-container">
         <h1 class="quiz-title">U.S. Capital Quiz</h1>
-        <p class="question">Quiz Question</p2>
-        <ul class="answer-choices">
-            <li>
-                <input type="radio" name="answer" id="input1">
-                <label for="input1"> One </label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="input2">
-                <label for="input2"> Two </label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="input3">
-                <label for="input3"> Three </label>
-            </li>
-            <li>
-                <input type="radio" name="answer" id="input4">
-                <label for="input4"> Four </label>
-            </li>
-        </ul>
+        <div class="question-container">
+            <p id="question" class="question"></p>
+        </div>
+        <div class="answer-container">
+            <ul class="answer-choices">
+                <li>
+                    <input type="radio" name="answer" id="input1">
+                    <label id="answer1" class="answer" for="input1"> One </label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="input2">
+                    <label id="answer2" class="answer" for="input2"> Two </label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="input3">
+                    <label id="answer3" class="answer" for="input3"> Three </label>
+                </li>
+                <li>
+                    <input type="radio" name="answer" id="input4">
+                    <label id="answer4" class="answer" for="input4"> Four </label>
+                </li>
+            </ul>
+        </div>
         <button class="submit-answer">Submit</button>
     </div>
     <script src="./assets/js/script.js"></script>
