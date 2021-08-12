@@ -14,9 +14,21 @@ var answer4 = document.querySelector('#answer4');
 var nextBtn = document.querySelector('.submit-answer')
 var questionCounter = 0;
 
+//Timer on the page 
+function timer(){
+    var sec = 5;
+    var timer = setInterval(function(){
+        document.querySelector('.timer').innerHTML= sec;
+        sec--;
+        if(sec < 0){
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+
 
 //On page load have questions and answer choices to first question.
-question.innerHTML = quizQuestions[questionCounter].question
+question.innerHTML = questionCounter+1 + '. ' + quizQuestions[questionCounter].question
 answer1.innerHTML = quizQuestions[questionCounter].a
 answer2.innerHTML = quizQuestions[questionCounter].b
 answer3.innerHTML = quizQuestions[questionCounter].c
@@ -36,9 +48,12 @@ if(questionCounter < quizQuestions.length){
 
 //Function that loads info into quiz form. 
 var changeQuestion = function(){
-question.innerHTML = quizQuestions[questionCounter].question
+question.innerHTML = questionCounter+1 + '. ' + quizQuestions[questionCounter].question
 answer1.innerHTML = quizQuestions[questionCounter].a
 answer2.innerHTML = quizQuestions[questionCounter].b
 answer3.innerHTML = quizQuestions[questionCounter].c
 answer4.innerHTML = quizQuestions[questionCounter].d
 };
+
+//on page load, run timer 
+question.addEventListener("load", timer());
