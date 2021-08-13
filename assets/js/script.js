@@ -21,7 +21,7 @@ var instuctionContainer = document.querySelector('.instruction-container');
 var scoreContainer = document.querySelector('.score-container');
 var score = scoreContainer.querySelector('.score');
 var questionCounter = 0;
-var countDown = 5;
+var time = 50;
 var playerScore = 0;
 
 //Start Button function 
@@ -32,19 +32,21 @@ startBtn.onclick = function () {
     timer;
 }
 
-//Timer on the page 
-var timer = setInterval(function () {
-    document.querySelector('.timer').innerHTML = countDown;
-    countDown--;
-    //if countdown reaches 0, stop timer and display score screen
-    if (countDown < 0) {
-        clearInterval(timer);
-        countDown = 0
+
+
+//Timer on the page @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+var timer = setInterval(countdown, 1000);
+
+function countdown() {
+    time--;
+    document.querySelector(".timer").textContent = time;
+    
+    // check if user ran out of time
+    if (time <= 0) {
         scoreScreen();
-
     }
-}, 1000);
-
+    }
 
 
 //On page load have questions and answer choices to first question.
@@ -65,8 +67,11 @@ nextBtn.onclick = function () {
 
     } else {
         //after last question -- display score div
-        playerScore = countDown
-        clearInterval(timer);
+        playerScore = time
+        if (playerScore < 0) {
+            playerScore = 0
+            time = 0
+        }
         scoreScreen();
 
     }
@@ -92,14 +97,14 @@ var checkAnswer = function () {
         console.log("CORRECT ANSWER")
     } else {
         console.log("WRONG ANSWER")
-        countDown = countDown - 10;
+        time = time - 10;
     }
 }
 
 //When you click the save button ....
 saveBtn.onclick = function () {
     var playerName = document.querySelector("#Initials").value;
-    highscores.push({Initials:playerName, Score:playerScore})
+    highscores.push({ Initials: playerName, Score: playerScore })
     console.log(highscores)
 
     quizContainer.style.opacity = 0
@@ -115,12 +120,17 @@ saveBtn.onclick = function () {
 
 //function that displays scorescreen
 var scoreScreen = function () {
+    //Stops timer
+    clearInterval(timer)
+
+    //Displays score container, and hides other containers
     quizContainer.style.opacity = 0
     quizContainer.style.zIndex = 0
     scoreContainer.style.opacity = 1
     scoreContainer.style.zIndex = 3
 
-    score.innerHTML = countDown;
+    //Displays score
+    score.textContent = playerScore;
 }
 
 //Function that loads info into quiz form. 
