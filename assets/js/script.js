@@ -7,7 +7,8 @@ var quizQuestions = [
     { question: "What is the capital of Hawaii?", a: "O'ahu", b: "Maui", c: "Pearl City", d: "Honolulu", answer: "Honolulu" }
 ];
 
-var highscores = [];
+//highscores from localstorage or if there arent any... blank
+var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
 //Variables
 var question = document.querySelector('#question');
@@ -29,10 +30,15 @@ var playerScore = 0;
 
 //Start Button function 
 startBtn.onclick = function () {
-    //Hides instructions - Shows Quiz
+    //Hides instructions -Hides score container  -Shows Quiz
     instuctionContainer.style.opacity = 0
     quizContainer.style.opacity = 1
     quizContainer.style.zIndex = 2
+    scoreContainer.style.opacity = 0
+    scoreContainer.style.zIndex = 0
+
+    //Resets questionCounter to 0
+    questionCounter = 0
     //Starts Timer
     timer;
     //Displays initial question 
@@ -113,9 +119,20 @@ var checkAnswer = function () {
 
 //When you click the save button ....
 saveBtn.onclick = function () {
-    var playerName = document.querySelector("#Initials").value;
-    highscores.push({ Initials: playerName, Score: playerScore })
-    console.log(highscores)
+    var playerName = document.querySelector("#Initials").value.trim();
+    var newScore = { Initials: playerName, Score: playerScore }
+
+    //Does not allow player to enter nothing
+    if(!playerName){
+        return;
+    }
+    
+    //Saves highscore to localstorage
+    highscores.push(newScore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+    //pulls up highscores page
+    window.location.href = "highscores.html"
 
     quizContainer.style.opacity = 0
     quizContainer.style.zIndex = 0
@@ -123,11 +140,7 @@ saveBtn.onclick = function () {
     scoreContainer.style.zIndex = 0
     instuctionContainer.style.opacity = 1
     instuctionContainer.style.zIndex = 3
-
-
 }
-
-
 //function that displays scorescreen
 var scoreScreen = function () {
     //Stops timer
