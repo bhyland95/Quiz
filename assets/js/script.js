@@ -1,10 +1,10 @@
 //Arrays
 var quizQuestions = [
-    { question: "Which one of these is NOT a programming language?", a: "Python", b: "JavaScript", c: "Java", d: "Banana", answer: "Banana" },
+    { question: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?", a: "last()", b: "push()", c: "pull()", d: "None of the above", answer: "push()" },
     { question: "Which of the following is an advantage of using JavaScript?", a: "Less server interaction", b: "immediate feedback to the visitors", c: "Increased interactivity", d: "All of the above", answer: "All of the above" },
     { question: "How can you get the type of arguments passed to a function?", a: "Using typeof operator", b: "using getType function", c: "Both of the above", d: "None of the above", answer: "Using typeof operator" },
-    { question: "What is the CSS property that sets the size of the whitespace outside the borders of the content?", a: "Margin", b: "Padding", c: "Border", d: "Line", answer: "Margin" },
-    { question: "The link element must go inside the ____ section of an HTML document or page.", a: "Head", b: "Paragraph", c: "Body", d: "Footer", answer: "Head" }
+    { question: "Which of the following function of String object executes the search for a match between a regular expression and a specified string?", a: "concat()", b: "match()", c: "replace()", d: "search()", answer: "search()" },
+    { question: "Which of the following function of String object combines the text of two strings and returns a new string?", a: "add()", b: "merge()", c: "concat()", d: "append()", answer: "concat()" }
 ];
 
 //highscores from localstorage or if there arent any... blank
