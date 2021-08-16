@@ -2,7 +2,7 @@
 
 This is a timed quiz on javaScipt fundamentals. The quiz consist of 5 multiple choice questions. You have 60 seconds to answer the questions. If you get a questions wrong, 12 seconds will be deducted from your time. 
 
-Your final score is your time remaining after answering all 5 questions. 
+Your final score is your time remaining after answering all 5 questions. At the end of the quiz, you have the opportunity to enter in your initials and save your score.
 
 Here is a link to the quiz:  https://bhyland95.github.io/Quiz/
 
