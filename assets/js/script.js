@@ -1,10 +1,10 @@
 //Arrays
 var quizQuestions = [
-    { question: "What is the capital of Texas?", a: "Dallas", b: "Houston", c: "Austin", d: "San Antonio", answer: "Austin" },
-    { question: "What is the capital of New York?", a: "New York City", b: "Albany", c: "Buffalo", d: "Syracuse", answer: "Albany" },
-    { question: "What is the capital of California?", a: "Sacramento", b: "Los Angeles", c: "San Diego", d: "San Francisco", answer: "Sacramento" },
-    { question: "What is the capital of Florida?", a: "Tallahassee", b: "Miami", c: "Orlando", d: "Jacksonville", answer: "Tallahassee" },
-    { question: "What is the capital of Hawaii?", a: "O'ahu", b: "Maui", c: "Pearl City", d: "Honolulu", answer: "Honolulu" }
+    { question: "Which one of these is NOT a programming language?", a: "Python", b: "JavaScript", c: "Java", d: "Banana", answer: "Banana" },
+    { question: "Which of the following is an advantage of using JavaScript?", a: "Less server interaction", b: "immediate feedback to the visitors", c: "Increased interactivity", d: "All of the above", answer: "All of the above" },
+    { question: "How can you get the type of arguments passed to a function?", a: "Using typeof operator", b: "using getType function", c: "Both of the above", d: "None of the above", answer: "Using typeof operator" },
+    { question: "What is the CSS property that sets the size of the whitespace outside the borders of the content?", a: "Margin", b: "Padding", c: "Border", d: "Line", answer: "Margin" },
+    { question: "The link element must go inside the ____ section of an HTML document or page.", a: "Head", b: "Paragraph", c: "Body", d: "Footer", answer: "Head" }
 ];
 
 //highscores from localstorage or if there arent any... blank
@@ -16,7 +16,7 @@ var answer1 = document.querySelector('#answer1');
 var answer2 = document.querySelector('#answer2');
 var answer3 = document.querySelector('#answer3');
 var answer4 = document.querySelector('#answer4');
-var nextBtn = document.querySelector('.submit-answer');
+var nextBtn = document.querySelector('#submit-answer');
 var startBtn = document.querySelector('#start-btn');
 var saveBtn = document.querySelector('#save-btn');
 var quizContainer = document.querySelector('.quiz-container');
@@ -25,7 +25,7 @@ var instuctionContainer = document.querySelector('.instruction-container');
 var scoreContainer = document.querySelector('.score-container');
 var score = scoreContainer.querySelector('.score');
 var questionCounter = 0;
-var time = 50;
+var time = 60;
 var playerScore = 0;
 
 //Start Button function 
@@ -37,10 +37,11 @@ startBtn.onclick = function () {
     scoreContainer.style.opacity = 0
     scoreContainer.style.zIndex = 0
 
+    timer();
+
     //Resets questionCounter to 0
     questionCounter = 0
-    //Starts Timer
-    timer;
+
     //Displays initial question 
     question.innerHTML = questionCounter + 1 + '. ' + quizQuestions[questionCounter].question
     answer1.innerHTML = quizQuestions[questionCounter].a
@@ -52,17 +53,21 @@ startBtn.onclick = function () {
 
 
 //Timer on the page
-var timer = setInterval(countdown, 1000);
+var timer = function () {
+    setInterval(countdown, 1000);
+    function countdown() {
 
-function countdown() {
-    time--;
-    document.querySelector(".timer").textContent = time;
-    
-    // check if user ran out of time
-    if (time <= 0) {
-        scoreScreen();
+        time--;
+        document.querySelector(".timer").textContent = time;
+
+        
+
+        // check if user ran out of time
+        if (time <= 0) {
+            scoreScreen();
+        }
     }
-}
+};
 
 //WHen you click the submit button, checks answer, calls changeQuestion function
 nextBtn.onclick = function () {
@@ -104,16 +109,16 @@ var checkAnswer = function () {
     if (UserAnswer == quizQuestions[questionCounter].answer) {
         //Displays Correct for 1 second after answering if correct
         displayAnswer.textContent = "CORRECT ANSWER"
-        setTimeout(function(){
-           displayAnswer.textContent = '';
+        setTimeout(function () {
+            displayAnswer.textContent = '';
         }, 1000);
     } else {
         //Displays wrong for 1 second and deducts 10 seconds if wrong
         displayAnswer.textContent = "WRONG ANSWER"
-        setTimeout(function(){
+        setTimeout(function () {
             displayAnswer.textContent = '';
-         }, 1000);
-        time = time - 10;
+        }, 1000);
+        time = time - 12;
     }
 }
 
@@ -123,10 +128,10 @@ saveBtn.onclick = function () {
     var newScore = { Initials: playerName, Score: playerScore }
 
     //Does not allow player to enter nothing
-    if(!playerName){
+    if (!playerName) {
         return;
     }
-    
+
     //Saves highscore to localstorage
     highscores.push(newScore);
     window.localStorage.setItem("highscores", JSON.stringify(highscores));
@@ -141,6 +146,7 @@ saveBtn.onclick = function () {
     instuctionContainer.style.opacity = 1
     instuctionContainer.style.zIndex = 3
 }
+
 //function that displays scorescreen
 var scoreScreen = function () {
     //Stops timer
@@ -154,7 +160,7 @@ var scoreScreen = function () {
 
     //Displays score
     score.textContent = playerScore;
-}
+};
 
 //Function that loads new question and answer choices into quiz form. 
 var changeQuestion = function () {
@@ -164,5 +170,6 @@ var changeQuestion = function () {
     answer3.innerHTML = quizQuestions[questionCounter].c
     answer4.innerHTML = quizQuestions[questionCounter].d
 };
+
 
 

@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Highscores</title>
 </head>
 
 <body>
 
-    <div class="wrapper">
+    <div class="highscore-container">
         <h1>Highscores</h1>
         <ol id="highscores"></ol>
-
-        <a href="index.html"><button>Return to Quiz</button></a>
-        <button id="reset">Reset Highscores</button>
+        <div class="highscore-footer">
+            <a href="index.html"><button id="return" class="small-btn">Return to Quiz</button></a>
+            <button id="reset" class="small-btn">Reset Highscores</button>
+        </div>
     </div>
 
     <script src="./assets/js/scores.js"></script>

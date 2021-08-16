@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,28 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Quiz</title>
 </head>
+
 <body>
     <div class="instruction-container">
-        <button id="start-btn">START</button>
+        <div class="instruction-header">
+            <h2 class="title">Coding Quiz Rules:</h2>
+        </div>
+        <div class="rules-container">
+            <ol>
+                <li> You will have 60 seconds to answer all the questions. </li>
+                <li> For each question you answer wrong, 12 seconds will be deducted. </li>
+                <li> Your score will be the time remaining at the end of the quiz. </li>
+            </ol>
+            <br>
+            <br>
+            <p>Hit the Start button below if you are ready!</p>
+        </div>
+        <button id="start-btn" class="btn">START</button>
     </div>
 
     <div class="quiz-container">
         <div class="quiz-header">
-            <h1 class="quiz-title">U.S. State Capitals Quiz</h1>
+            <h2 class="title">U.S. State Capitals Quiz</h2>
             <p class="timer-text">Time Left: <span class="timer"></span></p>
         </div>
         <div class="question-container">
@@ -42,19 +57,22 @@
         </div>
         <div class="quiz-footer">
             <p class="player-answer"></p>
-            <button class="submit-answer">Submit</button>
+            <button id="submit-answer" class="btn">Submit</button>
         </div>
-        
+
     </div>
 
     <div class="score-container">
-        <p>Quiz Over</p>
+        <h2 class="title">Quiz Over</h2>
         <p>Your score is: <span class="score"></span></p>
-        <label for ="Initials"> Enter Initials:</label>
-        <input class ="score-input" type ="text" placeholder="Initials" name="Initials" id="Initials" />
-        <button id="save-btn">Save Score</button>
+        <div class="save-score">
+            <label for="Initials"> Enter Initials:</label>
+            <input class="score-input" type="text" placeholder="Initials" name="Initials" id="Initials" />
+            <button id="save-btn" class="small-btn">Save Score</button>
+        </div>    
     </div>
 
     <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
